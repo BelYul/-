@@ -2,16 +2,17 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import config
+from config import user_id
 
 # with open('kinopoisk.html', 'w', encoding='utf-8') as output_file:
 #    output_file.write(r.text)
 
-def collect_rates(user_login):
+def collect_rates(user_id):
    page_num = 1
    data = []
 
    while True:
-       url = f'https://www.kinopoisk.ru/user/{user_login}/votes/list/vs/vote/page/{page_num}/#list'
+       url = f'https://www.kinopoisk.ru/user/{user_id}/votes/list/vs/vote/page/{page_num}/#list'
        html_content = requests.get(url).text
 
        soup = BeautifulSoup(html_content, 'lxml')
@@ -42,7 +43,7 @@ def collect_rates(user_login):
    return data
 
 #print(collect_rates('2057575'))
-rating_table = collect_rates(config.user_login)
+rating_table = collect_rates(config.user_id)
 print(len(rating_table))
 df = pd.DataFrame(rating_table)
 
