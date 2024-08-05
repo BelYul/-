@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import config
-from config import user_id
 
 # with open('kinopoisk.html', 'w', encoding='utf-8') as output_file:
 #    output_file.write(r.text)
